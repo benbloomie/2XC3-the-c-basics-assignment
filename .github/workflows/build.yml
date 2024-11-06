@@ -1,0 +1,20 @@
+name: build script for C Basics Assignment
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build using Makefile
+        run: make
+
+      - name: upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: convert
+          path: ./convert
