@@ -14,14 +14,22 @@
  *
  * Parameters:
  *  long input --> the decimal number to convert
+ *  long checkInputZero --> the number that the user inputs to be converted
  * Function Description:
  *  Recursively converts a decimal number to a specified base value, and outputs the result number by numbers.
  *  Takes a decimal number as input, and can convert bases up to 36
  */
+
+
 // NEED TO FIND A WAY TO OUTPUT 0
-void convertFromDecimal(long input, long base) {
+void convertFromDecimal(long input, long base, long checkInputZero) {
+
     // base case for when the quotient equals to 0
     if (input == 0) {
+        // if the numbered inputted by the user is 0, output that number
+        if (checkInputZero == 0) {  
+            printf("0");
+        }
         return;
     }
 
@@ -31,7 +39,7 @@ void convertFromDecimal(long input, long base) {
     }
 
     // recursivley calls the function using the quotient of the number divided by the corresponding base
-    convertFromDecimal(input / base, base);
+    convertFromDecimal(input / base, base, input);
 
     int quotient = input % base;    // calculates the quotient, to be printed
 
@@ -67,7 +75,7 @@ int analyzeArguments(long base, long start, long finish) {
     // if start and finish are not specified, read and process user input
     if (start == 0 && finish == 0) {
         if (scanf("%ld", &inputNumber) == 1) {
-            convertFromDecimal(inputNumber, base);  // calls the convertFromDecimal function to convert the inputted value
+            convertFromDecimal(inputNumber, base, inputNumber);  // calls the convertFromDecimal function to convert the inputted value
             puts("");
             analyzeArguments(base, start, finish);  // recursively calls the function to read the next input
         }
@@ -84,7 +92,7 @@ int analyzeArguments(long base, long start, long finish) {
     // if a valid range is provided, convert and print numbers in the range from start to finish
     else if (finish > start) {
         for (long i = start; i <= finish; i++) {
-            convertFromDecimal(i, base);
+            convertFromDecimal(i, base, i);
             puts("");
         }   
     }
