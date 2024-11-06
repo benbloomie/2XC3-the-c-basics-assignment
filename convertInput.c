@@ -1,3 +1,4 @@
+// ADD COMMENTS TO FUNCTIONS
 #include <stdlib.h>
 #include <stdio.h>
 
