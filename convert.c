@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
     // if parameters are valid, process and convert numbers
     if (validateParameters(argc, argv, &base, &start, &finish) == 0) {
-        analyzeArguments(base, start, finish);
+        analyzeTextInput(base, start, finish);
     }
 }
 

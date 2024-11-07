@@ -36,27 +36,27 @@ void getHelpMessage() {
 int validateParameters(int argc, char *argv[], long *base, long *start, long *finish) {
     // bad usage message
     char *badUsage = "Usage: convert [-b BASE] [-r START FINISH]\n"
-                     "  1 < BASE < 37\n"
-                     "  START and FINISH are long integers";
+                     "       1 < BASE < 37\n"
+                     "       START and FINISH are long integers";
     // assigns default values for base, start and finish
     *base = 16;
-    *start = 0;
-    *finish = 0;
 
     // if no arguments are passed, do nothing
     if (argc == 1) {
+        *start = 0;
+        *finish = 0;
         return 0;
     }
 
     // checks if user inputs help message
     if (strcmp(argv[1], "--help") == 0) {
         getHelpMessage();
+        exit(0);
     }
 
     for (int i = 1; i < argc; i++) {
         // checks if first character is a '-', to determine if its an option flag 
         if (argv[i][0] == '-') {
-
             // base flag  
             if (argv[i][1] == 'b') {
                 // checks to see if the next argument exists, and increments i by 1 to move to the next argument
@@ -68,6 +68,8 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
                     }
                     else {
                         *base = atol(argv[i]);
+                        *start = 0;
+                        *finish = 0;
                     }
                 }
                 else {
@@ -80,13 +82,17 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
             else if (argv[i][1] == 'r') {
                 // checks to see if only two arguments follow
                 if (argc > i + 2 && argc < i + 4) {
-                    // assigns start and finish to the two proceeding vakyes
+                    // assigns start and finish to the two proceeding values
                     *start = atol(argv[++i]);
                     *finish = atol(argv[++i]);
+                    // no output if start and finish values are the same
+                    if (*start == *finish) {
+                        exit(0);
+                    }
                 }
                 else {
                     fprintf(stderr, "%s\n", badUsage);
-                        exit(1);
+                    exit(1);
                 }
             }
 

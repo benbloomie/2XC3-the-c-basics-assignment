@@ -57,7 +57,7 @@ void convertFromDecimal(long input, long base, long checkInputZero) {
     }
 }
 
-/* Function Name: analyzeArguments
+/* Function Name: analyzeTextInput
  *
  * Parameters:
  *  long base, start, finish --> values determined from the checkParameters.c program 
@@ -69,7 +69,7 @@ void convertFromDecimal(long input, long base, long checkInputZero) {
  *  - 0 on successful execution or when the user inputs EOF.
  *  - 1 if an error occurs (e.g., non-integer input).
  */
-int analyzeArguments(long base, long start, long finish) {
+int analyzeTextInput(long base, long start, long finish) {
     long inputNumber = 0;
 
     // if start and finish are not specified, read and process user input
@@ -77,7 +77,7 @@ int analyzeArguments(long base, long start, long finish) {
         if (scanf("%ld", &inputNumber) == 1) {
             convertFromDecimal(inputNumber, base, inputNumber);  // calls the convertFromDecimal function to convert the inputted value
             printf("\n");
-            analyzeArguments(base, start, finish);  // recursively calls the function to read the next input
+            analyzeTextInput(base, start, finish);  // recursively calls the function to read the next input
         }
         // exit function and program when user enters CTRL+D
         else if (scanf("%ld", &inputNumber) == EOF) {

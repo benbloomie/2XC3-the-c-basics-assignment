@@ -75,40 +75,55 @@ test() {
 }
 
 # Test Case 1: Basic Conversion 
-test './convert -b 2' 'inp1.txt' 'ex_out1.txt' 'empty.txt'
+test './convert -b 2' 'tests/inp1.txt' 'tests/ex_out1.txt' 'tests/empty.txt'
 
 # Test Case 2: Base 16 Conversion 
-test './convert -b 16' 'inp2.txt' 'ex_out2.txt' 'empty.txt'
+test './convert -b 16' 'tests/inp2.txt' 'tests/ex_out2.txt' 'tests/empty.txt'
 
 # Test Case 3: Base 36 Conversion
-test './convert -b 36' 'inp3.txt' 'ex_out3.txt' 'empty.txt'
+test './convert -b 36' 'tests/inp3.txt' 'tests/ex_out3.txt' 'tests/empty.txt'
 
 # Test Case 4: Range Conversion 
-test './convert -b 2 -r 0 10' 'empty.txt' 'ex_out4.txt' 'empty.txt'
+test './convert -b 2 -r 0 10' 'tests/empty.txt' 'tests/ex_out4.txt' 'tests/empty.txt'
 
 # Test Case 5: Invalid Flag
-test './convert -a' 'empty.txt' 'empty.txt' 'usage.txt'
+test './convert -a' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
 
 # Test Case 6: Invalid Base
-test './convert -b 37' 'empty.txt' 'empty.txt' 'usage.txt'
+test './convert -b 37' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
 
 # Test Case 7: Invalid Base 
-test './convert -b 1' 'empty.txt' 'empty.txt' 'usage.txt'
+test './convert -b 1' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
 
 # Test Case 8: Invalid Input (Non-Integer)
-test './convert -b 10' 'inp8.txt' 'empty.txt' 'usage2.txt'
+test './convert -b 10' 'tests/inp8.txt' 'tests/empty.txt' 'tests/usage2.txt'
 
 # Test Case 9: Conversion for Range with Negative Start
-test './convert -b 2 -r -3 3' 'empty.txt' 'ex_out9.txt' 'empty.txt'
+test './convert -b 2 -r -3 3' 'tests/empty.txt' 'tests/ex_out9.txt' 'tests/empty.txt'
 
 # Test Case 10: No Arguments
-test './convert' 'inp10.txt' 'ex_out10.txt' 'empty.txt'
+test './convert' 'tests/inp10.txt' 'tests/ex_out10.txt' 'tests/empty.txt'
 
 # Test Case 11: Larger Start Than End
-test './convert -r 10 0' 'empty.txt' 'empty.txt' 'empty.txt'
+test './convert -r 10 0' 'tests/empty.txt' 'tests/empty.txt' 'tests/empty.txt'
 
 # Test Case 12: Too Many Range Values
-test './convert -r 1 2 3' 'empty.txt' 'empty.txt' 'usage.txt'
+test './convert -r 1 2 3' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
+
+# Test Case 13: No Value After Base Flag
+test './convert -b' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
+
+# Test Case 14: Help Flag
+test './convert --help' 'tests/empty.txt' 'tests/help.txt' 'tests/empty.txt'  
+
+# Test Case 15: Equal Start & Finish
+test './convert -r 10 10' 'tests/empty.txt' 'tests/empty.txt' 'tests/empty.txt'
+
+# Test Case 16: Extra Values After -b Flag
+test './convert -b 36 a b c' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'  # NOT WORKING
+
+# Test Case 16: Extra Values After -r Flag
+test './convert -r 36 1 2 3' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
 
 # Return code
 exit $fails
