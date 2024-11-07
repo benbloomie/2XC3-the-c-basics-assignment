@@ -35,8 +35,8 @@ void getHelpMessage() {
  */
 int validateParameters(int argc, char *argv[], long *base, long *start, long *finish) {
     // bad usage message
-    char *badUsage = "Usage: convert [-b BASE] [-r START FINISH]. \n"
-                     "  1 < BASE < 37 \n"
+    char *badUsage = "Usage: convert [-b BASE] [-r START FINISH]\n"
+                     "  1 < BASE < 37\n"
                      "  START and FINISH are long integers";
     // assigns default values for base, start and finish
     *base = 16;
@@ -63,16 +63,16 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
                 if (argc > ++i) {
                     // ensure that the base value is of the valid range before assigning it
                     if (atol(argv[i]) < minimumBase || atol(argv[i]) > maximumBase) {
-                        puts(badUsage);
-                        return 1;
+                        fprintf(stderr, "%s\n", badUsage);
+                        exit(1);
                     }
                     else {
                         *base = atol(argv[i]);
                     }
                 }
                 else {
-                    puts(badUsage);
-                    return 1;
+                    fprintf(stderr, "%s\n", badUsage);
+                    exit(1);
                 }
             }
             
@@ -85,14 +85,14 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
                     *finish = atol(argv[++i]);
                 }
                 else {
-                    puts(badUsage);
-                        return 1;
+                    fprintf(stderr, "%s\n", badUsage);
+                        exit(1);
                 }
             }
 
             else {
-                puts(badUsage);
-                return 1;
+                fprintf(stderr, "%s\n", badUsage);
+                exit(1);
             }
         }
     }

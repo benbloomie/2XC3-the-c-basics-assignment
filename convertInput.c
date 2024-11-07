@@ -76,7 +76,7 @@ int analyzeArguments(long base, long start, long finish) {
     if (start == 0 && finish == 0) {
         if (scanf("%ld", &inputNumber) == 1) {
             convertFromDecimal(inputNumber, base, inputNumber);  // calls the convertFromDecimal function to convert the inputted value
-            puts("");
+            printf("\n");
             analyzeArguments(base, start, finish);  // recursively calls the function to read the next input
         }
         // exit function and program when user enters CTRL+D
@@ -84,8 +84,8 @@ int analyzeArguments(long base, long start, long finish) {
             return 0;
         }
         else {
-            printf("Error: Non-long-int token encountered. \n");    // error output for invalid input.
-            return 1;
+            fprintf(stderr, "Error: Non-long-int token encountered.\n");    // error output for invalid input.
+            exit(1);
         }
     }
 
@@ -93,10 +93,9 @@ int analyzeArguments(long base, long start, long finish) {
     else if (finish > start) {
         for (long i = start; i <= finish; i++) {
             convertFromDecimal(i, base, i);
-            puts("");
+            printf("\n");
         }   
     }
-
     return 0;
 }
 
