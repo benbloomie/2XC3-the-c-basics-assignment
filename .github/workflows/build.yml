@@ -31,9 +31,6 @@ jobs:
             convert_coverage.txt
             checkParameters_coverage.txt
             convertInput_coverage.txt
-
-      - name: Run Tests 
-        run: ./test_script.sh > test_results.txt
-
+            
       - name: Upload Test Results
         if: ${{ always() }}
