@@ -120,10 +120,16 @@ test './convert --help' 'tests/empty.txt' 'tests/help.txt' 'tests/empty.txt'
 test './convert -r 10 10' 'tests/empty.txt' 'tests/empty.txt' 'tests/empty.txt'
 
 # Test Case 16: Extra Values After -b Flag
-test './convert -b 36 a b c' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'  # NOT WORKING
+test './convert -b 36 a b c' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'  
 
-# Test Case 16: Extra Values After -r Flag
-test './convert -r 36 1 2 3' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
+# Test Case 17: Extra Values After -r Flag
+test './convert -r 1 2 3' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
+
+# Test Case 18: Extra Values With Both Flags
+test './convert -b 36 -r 1 2 3' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt'
+
+# Test Case 19: No Range
+test './convert -r 0 0' 'tests/empty.txt' 'tests/empty.txt' 'tests/empty.txt'  
 
 # Return code
 exit $fails

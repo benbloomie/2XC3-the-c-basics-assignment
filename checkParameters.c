@@ -57,15 +57,22 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
     for (int i = 1; i < argc; i++) {
         // checks if first character is a '-', to determine if its an option flag 
         if (argv[i][0] == '-') {
+            // checks for unknown flag before processing data
+            if (argv[i][1] != 'b' && argv[i][1] != 'r') {
+                fprintf(stderr, "%s\n", badUsage);
+                exit(1);
+            }
+
             // base flag  
             if (argv[i][1] == 'b') {
                 // checks to see if the next argument exists, and increments i by 1 to move to the next argument
                 if (argc > ++i) {
-                    // ensure that the base value is of the valid range before assigning it
+                    // checks if the base value is outside of excepted values
                     if (atol(argv[i]) < minimumBase || atol(argv[i]) > maximumBase) {
                         fprintf(stderr, "%s\n", badUsage);
                         exit(1);
                     }
+                    // if the value is accepted, assign all values
                     else {
                         *base = atol(argv[i]);
                         *start = 0;
@@ -95,12 +102,21 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
                     exit(1);
                 }
             }
-
-            else {
+        }
+        // checks for extra arguments beyond the expected count
+        if ((argc > 3 && argv[1][1] == 'b')) { 
+            // checks when the range flag is provided
+            if (argc != 6 && argv[3][1] == 'r') {
+                fprintf(stderr, "%s\n", badUsage);
+                exit(1);  
+            }
+            // ensures the range flag is not provided for other case
+            else if (argv[3][1] != 'r') {
                 fprintf(stderr, "%s\n", badUsage);
                 exit(1);
-            }
+            } 
         }
+
     }
     return 0;
 }
