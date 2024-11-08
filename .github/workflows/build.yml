@@ -37,20 +37,3 @@ jobs:
 
       - name: Upload Test Results
         if: ${{ always() }}
-
-<<<<<<< HEAD
-        - name: Upload Test Results
-          if: ${{ always() }}
-
-          uses: actions/upload-artifact@v4
-          with:
-            name: test-results
-            path: ./test_results.txt
-=======
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: ./test_results.txt
-
-
->>>>>>> 8fd875e84890022fe1e3a8bb9d2cf984261fe72a
