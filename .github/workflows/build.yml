@@ -15,8 +15,11 @@ jobs:
           make ctest
           ./test_script.sh > test_results.txt
           gcov convert-convert.c > convert_coverage.txt
+          cat convert.c.gcov >> convert_coverage.txt
           gcov convert-checkParameters.c > checkParameters_coverage.txt
+          cat checkParameters.c.gcov >> checkParameters_coverage.txt
           gcov convert-convertInput.c > convertInput_coverage.txt
+          cat convertInput.c.gcov >> convertInput_coverage.txt
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
