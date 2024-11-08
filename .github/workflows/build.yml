@@ -11,10 +11,22 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build using Makefile
-        run: make
+        run: |
+          make ctest
+          ./test_script.sh > test_results.txt
+          gcov convert-convert.c > convert_coverage.txt
+          gcov convert-checkParameters.c > checkParameters_coverage.txt
+          gcov convert-convertInput.c > convertInput_coverage.txt
 
-      - name: upload binary
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: convert
-          path: ./convert
+          name: coverage-and-results
+          path: |
+            ./convert
+            test_results.txt
+            convert_coverage.txt
+            checkParameters_coverage.txt
+            convertInput_coverage.txt
+
+
