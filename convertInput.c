@@ -1,4 +1,4 @@
-/* Benjamin Bloomfield, bloomfib, November #, 2024 
+/* Benjamin Bloomfield, bloomfib, November 8, 2024 
  *
  * This program handles the conversion for the decimal numbers the user specifies for conversion.
  * It supports bases from 2 to 36, allowing output in formats of binary, octal, hexidecimal and hexatridecimal.

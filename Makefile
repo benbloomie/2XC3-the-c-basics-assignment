@@ -1,3 +1,5 @@
+# Benjamin Bloomfield, bloomfib, November 8, 2024 
+
 # makefile to handle compilation of all .c files; default
 convert: convert.c convertInput.c checkParameters.c checkParameters.h convertInput.h
 	gcc -o convert convert.c convertInput.c checkParameters.c

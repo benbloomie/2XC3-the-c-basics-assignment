@@ -1,4 +1,4 @@
-/* Benjamin Bloomfield, bloomfib, November #, 2024 
+/* Benjamin Bloomfield, bloomfib, November 8, 2024 
  *
  * This code works as a command-line utility, that validates user input for a number base conversion.
  * It takes command-line arguments to initiate the base and range to aid with conversion from a decimal number.
