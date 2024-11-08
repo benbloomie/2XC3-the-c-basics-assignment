@@ -10,7 +10,7 @@
 #
 # CAUTION: Uses temporary files named test_err.txt and test_out.txt
 # 
-# Benjamin Bloomfield, McMaster University, November ##, 2024
+# Benjamin Bloomfield, McMaster University, November #, 2024
 
 declare -i tc=0
 declare -i fails=0

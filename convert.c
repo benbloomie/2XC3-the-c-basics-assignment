@@ -1,4 +1,4 @@
-/* Benjamin Bloomfield, bloomfib, November ##, 2024 
+/* Benjamin Bloomfield, bloomfib, November #, 2024 
  *
  * Main program to handle the number conversion.
  * Calls upon methods from other c files to process arguments, inputs, and the conversion itself.

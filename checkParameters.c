@@ -1,4 +1,4 @@
-/* Benjamin Bloomfield, bloomfib, November ##, 2024 
+/* Benjamin Bloomfield, bloomfib, November #, 2024 
  *
  * This code works as a command-line utility, that validates user input for a number base conversion.
  * It takes command-line arguments to initiate the base and range to aid with conversion from a decimal number.
@@ -17,7 +17,30 @@
  *  Outputs a help message that guides the user on how to use the program properly.
  */
 void getHelpMessage() {
-    puts("HELP!");
+    puts("convert - Number Base Conversion Utility");
+    puts("Version: v1.0.0");
+    puts("");
+    puts("Convert is a command line utility that allows users to perform decimal");
+    puts("conversion to other bases. The user can specify a certain base from 2 to"); 
+    puts("36 to convert to binary, octal, hexidecimal, etc. Users can also include");
+    puts("an optional range of numbers to convert, or simply enter numbers as input.");
+    puts("");
+    puts("The defualt base for conversion is 16.");
+    puts("If no range is specified, the program will take user input until EOF.");
+    puts("If a range is specified, it will convert each number from START to FINISH.");
+    puts("");
+    puts("Usage:");
+    puts("    convert [-b BASE] [-r START FINISH]");
+    puts("    convert [--help]");
+    puts("");
+    puts("Arguments:");
+    puts("    -b BASE            The base for number conversion (between 2 and 36).");
+    puts("    -r START FINISH    Specifies a range of numbers to be converted.");
+    puts("    --help             Displays this help message.");
+    puts("");
+    puts("Usage Examples:");
+    puts("    convert -b 16           Converts user input to base 16.");
+    puts("    convert -b 2 -r -3 3    Converts numbers from -3 to 3 into binary.");
 }
 
 /* Name of the function: validateParameters

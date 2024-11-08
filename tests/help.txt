@@ -1,1 +1,24 @@
-HELP!
+convert - Number Base Conversion Utility
+Version: v1.0.0
+
+Convert is a command line utility that allows users to perform decimal
+conversion to other bases. The user can specify a certain base from 2 to
+36 to convert to binary, octal, hexidecimal, etc. Users can also include
+an optional range of numbers to convert, or simply enter numbers as input.
+
+The defualt base for conversion is 16.
+If no range is specified, the program will take user input until EOF.
+If a range is specified, it will convert each number from START to FINISH.
+
+Usage:
+    convert [-b BASE] [-r START FINISH]
+    convert [--help]
+
+Arguments:
+    -b BASE            The base for number conversion (between 2 and 36).
+    -r START FINISH    Specifies a range of numbers to be converted.
+    --help             Displays this help message.
+
+Usage Examples:
+    convert -b 16           Converts user input to base 16.
+    convert -b 2 -r -3 3    Converts numbers from -3 to 3 into binary.
