@@ -1,10 +1,9 @@
-/* Benjamin Bloomfield, bloomfib, November 8, 2024 
+/* Benjamin Bloomfield, bloomfib, November 9, 2024 
  *
  * This code works as a command-line utility, that validates user input for a number base conversion.
  * It takes command-line arguments to initiate the base and range to aid with conversion from a decimal number.
  * The program accurately handles invalid inputs, and allows users to access a help message if they require.
  */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -41,6 +40,37 @@ void getHelpMessage() {
     puts("Usage Examples:");
     puts("    convert -b 16           Converts user input to base 16.");
     puts("    convert -b 2 -r -3 3    Converts numbers from -3 to 3 into binary.");
+}
+
+
+/* Name of the function: validateLongValues
+ *
+ * Parameters:
+ *  char *currentParameter --> pointer to a char that represents the arguments for START and FINISH
+ * Function Description:
+ *  Validates that START and FINISH represent a valid long integers in base 10 using strtol.
+ *  endptr points to '\0' if the entire string is a valid number.
+ *  If endptr does not point to '\0', the string contains non-numeric characters and is invalid.
+ * Function Description:
+ *  Validates that START and FINISH are valid long integers before conversion.
+ *  endptr points to '\0' if each character in currentParameter could be converted to the specified base 10. 
+ * Return Value and Output:
+ *  Returns 1 if the string is a valid long integer.
+ *  Returns 0 if the string contains invalid characters.
+ */
+int validateLongValues(char *currentParameter) {
+    char *endptr;
+    
+    // performs conversion using strtol
+    strtol(currentParameter, &endptr, 10);
+
+    // checks if the entire string was a valid long integer
+    if (*endptr == '\0') {
+        return 0;  
+    } 
+    else {
+        return 1;
+    }
 }
 
 /* Name of the function: validateParameters
@@ -112,12 +142,19 @@ int validateParameters(int argc, char *argv[], long *base, long *start, long *fi
             else if (argv[i][1] == 'r') {
                 // checks to see if only two arguments follow
                 if (argc > i + 2 && argc < i + 4) {
-                    // assigns start and finish to the two proceeding values
-                    *start = atol(argv[++i]);
-                    *finish = atol(argv[++i]);
-                    // no output if start and finish values are the same
-                    if (*start == *finish) {
-                        exit(0);
+                    // checks if the START and FINISH contain non-numeric values
+                    if (validateLongValues(argv[i+1]) == 0 &&  validateLongValues(argv[i+1]) == 0) {
+                        // assigns start and finish to the two proceeding values
+                        *start = atol(argv[++i]);
+                        *finish = atol(argv[++i]);
+                        // no output if start and finish values are the same
+                        if (*start == *finish) {
+                            exit(0);
+                        }
+                    }
+                    else {
+                        fprintf(stderr, "%s\n", badUsage);
+                        exit(1);
                     }
                 }
                 else {

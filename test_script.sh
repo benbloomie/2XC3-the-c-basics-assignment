@@ -10,7 +10,7 @@
 #
 # CAUTION: Uses temporary files named test_err.txt and test_out.txt
 # 
-# Benjamin Bloomfield, McMaster University, November 8, 2024
+# Benjamin Bloomfield, McMaster University, November 9, 2024
 
 declare -i tc=0
 declare -i fails=0
@@ -130,6 +130,12 @@ test './convert -b 36 -r 1 2 3' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage
 
 # Test Case 19: No Range
 test './convert -r 0 0' 'tests/empty.txt' 'tests/empty.txt' 'tests/empty.txt'  
+
+# Test Case 20: Non-Numeric Start & Finish 
+test './convert -r a b' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt' 
+
+# Test Case 21: Non-Numeric Start & Finish (With Base Flag)
+test './convert -b 2 -r x y' 'tests/empty.txt' 'tests/empty.txt' 'tests/usage.txt' 
 
 # Return code
 exit $fails
