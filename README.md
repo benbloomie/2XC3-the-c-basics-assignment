@@ -18,8 +18,8 @@ This program allows users to convert decimal numbers to various bases (from base
 1. Clone or download the repository:
 
     ```bash
-    git clone https://github.com/benbloomie/2XC3-the-c-basics-assignment
-    cd 2XC3-the-c-basics-assignment
+    git clone https://github.com/benbloomie/number-base-conversion-utility
+    cd number-base-conversion-utility
     ```
 
 2. Compile the program using the Makefile:
